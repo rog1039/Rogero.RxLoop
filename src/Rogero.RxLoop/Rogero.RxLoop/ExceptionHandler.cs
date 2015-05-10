@@ -1,6 +1,6 @@
 using System;
 
-namespace Rogero.RxLoop
+namespace Rogero.RxLoops
 {
     public static class ExceptionHandler
     {

@@ -1,7 +1,7 @@
 using System.Reactive.Concurrency;
 using Microsoft.Reactive.Testing;
 
-namespace Rogero.RxLoop
+namespace Rogero.RxLoops
 {
     public sealed class TestSchedulers : ISchedulerProvider
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.Reactive.Testing;
 
-namespace Rogero.RxLoop
+namespace Rogero.RxLoops
 {
     public static class TestSchedulerExtensionMethods
     {

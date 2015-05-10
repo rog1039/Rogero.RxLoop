@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rogero.RxLoop", "Rogero.RxLoop\Rogero.RxLoop.csproj", "{BCD31F99-E9BE-45FD-AA2E-07238B2BBF9A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rogero.RxLoops", "Rogero.RxLoop\Rogero.RxLoops.csproj", "{BCD31F99-E9BE-45FD-AA2E-07238B2BBF9A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rogero.RxLoops.Tests", "Rogero.RxLoops.Tests\Rogero.RxLoops.Tests.csproj", "{4E8A07EF-B328-4C3B-967D-2CC39FFCB5BA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{BCD31F99-E9BE-45FD-AA2E-07238B2BBF9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BCD31F99-E9BE-45FD-AA2E-07238B2BBF9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BCD31F99-E9BE-45FD-AA2E-07238B2BBF9A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E8A07EF-B328-4C3B-967D-2CC39FFCB5BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E8A07EF-B328-4C3B-967D-2CC39FFCB5BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E8A07EF-B328-4C3B-967D-2CC39FFCB5BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E8A07EF-B328-4C3B-967D-2CC39FFCB5BA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

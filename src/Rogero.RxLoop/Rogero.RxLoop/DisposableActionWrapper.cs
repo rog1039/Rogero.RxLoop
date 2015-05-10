@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Rogero.RxLoop
+namespace Rogero.RxLoops
 {
     /// <summary>
     /// This class only exists because we must return an object that implements IDisposable when scheduling 

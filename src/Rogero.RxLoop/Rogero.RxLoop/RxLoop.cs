@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 
-namespace Rogero.RxLoop
+namespace Rogero.RxLoops
 {
     public class RxLoop : IDisposable
     {

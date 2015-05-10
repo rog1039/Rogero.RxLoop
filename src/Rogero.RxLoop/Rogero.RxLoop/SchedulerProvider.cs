@@ -1,6 +1,6 @@
 ﻿using System.Reactive.Concurrency;
 
-namespace Rogero.RxLoop
+namespace Rogero.RxLoops
 {
     public sealed class SchedulerProvider : ISchedulerProvider
     {

@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Rogero.RxLoops")]
+[assembly: AssemblyTitle("Rogero.RxLoops.Tests")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Rogero.RxLoops")]
+[assembly: AssemblyProduct("Rogero.RxLoops.Tests")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("6dd3295c-3747-4159-a5ea-2f2654e3062f")]
+[assembly: Guid("1d157b83-89bb-4b53-b96f-8ac383968e92")]
 
 // Version information for an assembly consists of the following four values:
 //

@@ -1,14 +1,14 @@
 ﻿using System;
 
-namespace Rogero.RxLoop
+namespace Rogero.RxLoops
 {
-    public abstract class RxLoopInstance : IDisposable
+    public abstract class RxLoopInstanceBase : IDisposable
     {
         protected readonly RxLoop RxLoop;
 
-        public RxLoopInstance(Action actionToPerform, TimeSpan delayBetweenRuns, ISchedulerProvider scheduler, string nameOfInstance)
+        public RxLoopInstanceBase(TimeSpan delayBetweenRuns, ISchedulerProvider scheduler, string nameOfInstance)
         {
-            RxLoop = new RxLoop(scheduler, actionToPerform, delayBetweenRuns, nameOfInstance);
+            RxLoop = new RxLoop(scheduler, Action, delayBetweenRuns, nameOfInstance);
         }
 
         protected void Start()
@@ -35,5 +35,7 @@ namespace Rogero.RxLoop
         {
             Stop();
         }
+
+        protected abstract void Action();
     }
 }
