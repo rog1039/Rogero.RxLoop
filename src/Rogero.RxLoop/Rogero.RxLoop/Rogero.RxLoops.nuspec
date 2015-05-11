@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>Rogero.RxLoops</id>
+        <version>1.0.0</version>
+        <title>Rogero.RxLoops</title>
+        <authors>Paul Rogero</authors>
+        <owners>Paul Rogero</owners>
+        <licenseUrl>https://github.com/rog1039/Rogero.RxLoop</licenseUrl>
+        <projectUrl>https://github.com/rog1039/Rogero.RxLoop</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>An Rx-based loop construct.</description>
+        <releaseNotes />
+        <copyright>Copyright 2015</copyright>
+    </metadata>
+    <files>
+        <file src="bin\Release\Rogero.RxLoops.dll" target="lib\Rogero.RxLoops.dll" />
+    </files>
+</package>
