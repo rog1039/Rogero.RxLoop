@@ -6,7 +6,19 @@ namespace Rogero.RxLoops
     {
         protected readonly RxLoop RxLoop;
 
-        public RxLoopInstanceBase(TimeSpan delayBetweenRuns, ISchedulerProvider scheduler, string nameOfInstance)
+        public string Description
+        {
+            get { return RxLoop.Description; }
+            set { RxLoop.Description = value; }
+        }
+
+        public bool PrintDebugOutput
+        {
+            get { return RxLoop.PrintDebugOutput; }
+            set { RxLoop.PrintDebugOutput = value; }
+        }
+
+        public RxLoopInstanceBase(TimeSpan delayBetweenRuns, ISchedulerProvider scheduler, string nameOfInstance = default(string))
         {
             RxLoop = new RxLoop(scheduler, Action, delayBetweenRuns, nameOfInstance);
         }
