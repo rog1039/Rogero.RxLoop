@@ -23,7 +23,7 @@ namespace Rogero.RxLoops
             RxLoop = new RxLoop(scheduler, Action, delayBetweenRuns, nameOfInstance);
         }
 
-        protected void Start()
+        public void Start()
         {
             RxLoop.StartLoop();
         }
