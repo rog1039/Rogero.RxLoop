@@ -7,19 +7,19 @@ namespace Rogero.RxLoops
     {
         private readonly ISchedulerProvider _schedulerProvider;
         private readonly Action _action;
-        private readonly string _description;
         private readonly TimeSpan _delayBetweenRuns;
         private volatile bool _isEnabled = true;
         private IDisposable _actionScheduleDisposable;
 
         public bool PrintDebugOutput { get; set; }
+        public string Description { get; set; }
 
         public RxLoop(ISchedulerProvider schedulerProvider, Action action, TimeSpan delayBetweenRuns, string description = default(string))
         {
             _schedulerProvider = schedulerProvider;
             _action = action;
             _delayBetweenRuns = delayBetweenRuns;
-            _description = description;
+            Description = description;
             PrintDebugOutput = false;
         }
 
@@ -70,7 +70,7 @@ namespace Rogero.RxLoops
                 {
                     Debug.WriteLine("Running at time {0:yyyy.MM.dd | hh:mm:ss.ffff | zzz} | Ticks {2,3} | [{1}]",
                         _schedulerProvider.ThreadPool.Now, 
-                        _description, 
+                        Description, 
                         _schedulerProvider.ThreadPool.Now.Ticks);
                 }
                 _action();
