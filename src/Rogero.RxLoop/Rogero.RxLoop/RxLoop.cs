@@ -12,12 +12,15 @@ namespace Rogero.RxLoops
         private volatile bool _isEnabled = true;
         private IDisposable _actionScheduleDisposable;
 
+        public bool PrintDebugOutput { get; set; }
+
         public RxLoop(ISchedulerProvider schedulerProvider, Action action, TimeSpan delayBetweenRuns, string description = default(string))
         {
             _schedulerProvider = schedulerProvider;
             _action = action;
             _delayBetweenRuns = delayBetweenRuns;
             _description = description;
+            PrintDebugOutput = false;
         }
 
         public IDisposable StartLoop()
@@ -63,7 +66,13 @@ namespace Rogero.RxLoops
         {
             try
             {
-                Debug.WriteLine("Running at time {0:yyyy.MM.dd | hh:mm:ss.fff | zzz} [{1}]", _schedulerProvider.ThreadPool.Now, _description);
+                if (PrintDebugOutput)
+                {
+                    Debug.WriteLine("Running at time {0:yyyy.MM.dd | hh:mm:ss.ffff | zzz} | Ticks {2,3} | [{1}]",
+                        _schedulerProvider.ThreadPool.Now, 
+                        _description, 
+                        _schedulerProvider.ThreadPool.Now.Ticks);
+                }
                 _action();
             }
             catch (Exception e)
