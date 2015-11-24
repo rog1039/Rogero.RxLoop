@@ -13,7 +13,7 @@ namespace Rogero.RxLoops
         public TimeSpan DelayBetweenRuns { get; }
         public bool PrintDebugOutput { get; set; }
         public string Description { get; set; }
-        public Guid LoopGuid { get; } = new Guid();
+        public Guid LoopGuid { get; } = Guid.NewGuid();
 
         public RxLoop(ISchedulerProvider schedulerProvider, Action action, TimeSpan delayBetweenRuns, string description = default(string))
         {
