@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 
 namespace Rogero.RxLoops
 {
@@ -23,9 +24,9 @@ namespace Rogero.RxLoops
             RxLoop = new RxLoop(scheduler, Action, delayBetweenRuns, nameOfInstance);
         }
 
-        public void Start()
+        public void Start(CancellationToken token)
         {
-            RxLoop.StartLoop();
+            RxLoop.StartLoop(token);
         }
         
         public void RunOneIteration()
@@ -35,7 +36,7 @@ namespace Rogero.RxLoops
 
         public void ScheduleOneIteration()
         {
-            RxLoop.Schedule(RxLoop.RunAction);
+            RxLoop.ScheduleOneIteration();
         }
 
         public void Stop()
@@ -48,6 +49,6 @@ namespace Rogero.RxLoops
             Stop();
         }
 
-        protected abstract void Action();
+        protected abstract void Action(CancellationToken token);
     }
 }

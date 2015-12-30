@@ -16,4 +16,13 @@ namespace Rogero.RxLoops
 
         public void Dispose() { }
     }
+
+    public class DisposableWrapper : IDisposable
+    {
+        public DisposableWrapper(object o)
+        {
+            
+        }
+        public void Dispose() { }
+    }
 }

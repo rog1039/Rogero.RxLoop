@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using FluentAssertions;
 using Xunit;
@@ -12,12 +13,12 @@ namespace Rogero.RxLoops.Tests
     public class SimpleLoopTests
     {
         private int _callCount = 0;
-        private readonly Action _action;
+        private readonly Action<CancellationToken> _action;
         readonly TestSchedulers _testSchedulers = new TestSchedulers();
 
         public SimpleLoopTests()
         {
-            _action = () =>
+            _action = (CancellationToken token) =>
             {
                 CallCount++;
             };
@@ -38,7 +39,7 @@ namespace Rogero.RxLoops.Tests
                 {
                     var loop = new RxLoop(_testSchedulers, _action, TimeSpan.FromTicks(5));
                     loop.PrintDebugOutput = true;
-                    loop.StartLoop();
+                    loop.StartLoop(new CancellationToken());
                 });
 
             "Given an initial call count of 0"
@@ -86,7 +87,7 @@ namespace Rogero.RxLoops.Tests
                 ._(() =>
                 {
                     loop = new RxLoop(_testSchedulers, _action, TimeSpan.FromTicks(5));
-                    loop.StartLoop();
+                    loop.StartLoop(new CancellationToken());
                 });
 
             "Given an initial call count of 0"
