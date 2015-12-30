@@ -4,21 +4,22 @@ using System.Threading;
 
 namespace Rogero.RxLoops
 {
-    public class RxLoopRedone
+    public class RxLoopCancellable
     {
         private readonly ISchedulerProvider _schedulerProvider;
         private readonly Action<CancellationToken> _action;
-        private CancellationToken _token;
-        private static readonly object EmptyState = null;
-        private bool _loopStarted;
 
         public TimeSpan DelayBetweenRuns { get; }
 
+        public RxLoopCancellable(ISchedulerProvider schedulerProvider, Action<CancellationToken> action, TimeSpan delayBetweenRuns)
+        {
+            _schedulerProvider = schedulerProvider;
+            _action = action;
+            DelayBetweenRuns = delayBetweenRuns;
+        }
+
         public void StartLoop(CancellationToken token)
         {
-            _token = token;
-            _loopStarted = true;
-
             var loopState = new LoopState(token);
             DoLoop(loopState);
         }
@@ -45,24 +46,6 @@ namespace Rogero.RxLoops
                 (scheduler, state) =>
                 {
                     DoLoop(state);
-                    return Disposable.Empty;
-                }
-                );
-        }
-
-        public void Pulse(CancellationToken token)
-        {
-            RunActionInternal(token);
-        }
-
-        public IDisposable PulseAfterDelay(CancellationToken token)
-        {
-            return _schedulerProvider.ThreadPool.Schedule(
-                token,
-                DelayBetweenRuns,
-                (scheduler, state) =>
-                {
-                    RunActionInternal(state);
                     return Disposable.Empty;
                 }
                 );

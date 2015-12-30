@@ -24,9 +24,9 @@ namespace Rogero.RxLoops
             RxLoop = new RxLoop(scheduler, Action, delayBetweenRuns, nameOfInstance);
         }
 
-        public void Start(CancellationToken token)
+        public void Start()
         {
-            RxLoop.StartLoop(token);
+            RxLoop.StartLoop();
         }
         
         public void RunOneIteration()
@@ -49,6 +49,6 @@ namespace Rogero.RxLoops
             Stop();
         }
 
-        protected abstract void Action(CancellationToken token);
+        protected abstract void Action();
     }
 }

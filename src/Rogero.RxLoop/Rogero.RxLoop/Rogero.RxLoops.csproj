@@ -74,7 +74,7 @@
     <Compile Include="ISchedulerProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RxLoopInstanceBase.cs" />
-    <Compile Include="RxLoopRedone.cs" />
+    <Compile Include="RxLoopCancellable.cs" />
     <Compile Include="SchedulerProvider.cs" />
     <Compile Include="TestSchedulerExtensionMethods.cs" />
     <Compile Include="TestSchedulers.cs" />
