@@ -1,23 +1,41 @@
 ﻿using System;
+using System.Data.Common;
 using System.Threading;
 using FluentAssertions;
 using Xunit;
+using Timer = System.Timers.Timer;
 
 namespace Rogero.RxLoops.Tests
 {
 
-    public class RxLoopRedoneTests
+    public class RxLoopCancellableTests
     {
         private int _callCount = 0;
         private readonly Action<CancellationToken> _action;
         readonly TestSchedulers _testSchedulers = new TestSchedulers();
         private CancellationTokenSource _tokenSource;
+        private Action<CancellationToken> _longRunningAction;
+        private bool _longRunningActionCancelled = false;
 
-        public RxLoopRedoneTests()
+        public RxLoopCancellableTests()
         {
             _action = (CancellationToken token) =>
             {
                 _callCount++;
+            };
+
+            _longRunningAction = (CancellationToken token) =>
+            {
+                for (int i = 1; i < int.MaxValue; i++)
+                {
+                    _callCount++;
+                    if (token.IsCancellationRequested)
+                    {
+                        Console.WriteLine(_callCount);
+                        _longRunningActionCancelled = true;
+                        break;
+                    }
+                }
             };
         }
 
@@ -33,10 +51,10 @@ namespace Rogero.RxLoops.Tests
                     loop.StartLoop(_tokenSource.Token);
                 });
 
-            "Given an initial call count of 1"
+            "Given an initial call count of 0"
                 ._(() =>
                 {
-                    _callCount.Should().Be(1);
+                    _callCount.Should().Be(0);
                 });
 
             "Then the call count should be one after 4 ticks"
@@ -81,7 +99,42 @@ namespace Rogero.RxLoops.Tests
                 });
             
         }
+
+        [Fact()]
+        [Trait("Category", "Instant")]
+        
+        public void Cancel_Loop_That_Is_Executing_An_Action()
+        {
+            RxLoopConfiguration.Trace = Console.WriteLine;
+            "Given a loop that executes a long running action every 1 tick"
+                ._(() =>
+                {
+                    var loop = new RxLoopCancellable(_testSchedulers, _longRunningAction, TimeSpan.FromTicks(1));
+                    _tokenSource = new CancellationTokenSource();
+                    loop.StartLoop(_tokenSource.Token);
+                });
+
+            "Given the loop starts but we cancel the loop after a 0.2 second delay"
+                ._(() =>
+                {
+                    var timerToStopLoop = new Timer(200);
+                    timerToStopLoop.Elapsed += (sender, args) => _tokenSource.Cancel();
+                    timerToStopLoop.Start();
+
+                    _testSchedulers.AdvanceAllBy(20.Ticks());
+                });
+
+            "The long running action should gracefully exit and the loop should stop"
+                ._(() =>
+                {
+                    _longRunningActionCancelled.Should().BeTrue();
+                    _callCount.Should().BeGreaterThan(1000);
+                });
+        }
     }
+
+
+
     public class SimpleLoopTests
     {
         private int _callCount = 0;

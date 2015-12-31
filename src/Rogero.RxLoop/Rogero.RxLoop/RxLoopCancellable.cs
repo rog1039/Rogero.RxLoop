@@ -28,7 +28,20 @@ namespace Rogero.RxLoops
         public void StartLoop(CancellationToken token)
         {
             var loopState = new LoopState(token);
-            DoLoop(loopState);
+            ScheduleNextRunImmediately(loopState);
+        }
+
+        private void ScheduleNextRunImmediately(LoopState loopState)
+        {
+            _schedulerProvider.ThreadPool.Schedule(
+                loopState,
+                TimeSpan.Zero,
+                (scheduler, state) =>
+                {
+                    DoLoop(state);
+                    return Disposable.Empty;
+                }
+                );
         }
 
         private void DoLoop(LoopState loopState)
@@ -43,7 +56,6 @@ namespace Rogero.RxLoops
         private void RunActionInternal(CancellationToken token)
         {
             RxLoopConfiguration.Trace?.Invoke(DebugOutput());
-
             _action(token);
         }
 
@@ -69,7 +81,7 @@ namespace Rogero.RxLoops
                 );
         }
 
-        private class LoopState
+        private struct LoopState
         {
             public LoopState(CancellationToken token)
             {
@@ -78,10 +90,5 @@ namespace Rogero.RxLoops
 
             public CancellationToken CancellationToken { get; }
         }
-    }
-
-    public static class RxLoopConfiguration
-    {
-        public static Action<string> Trace { get; set; }
     }
 }
