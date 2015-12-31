@@ -19,6 +19,8 @@ namespace Rogero.RxLoops.Tests
 
         public RxLoopCancellableTests()
         {
+            RxLoopConfiguration.TraceHandler = Console.WriteLine;
+
             _action = (CancellationToken token) =>
             {
                 _callCount++;
@@ -105,7 +107,6 @@ namespace Rogero.RxLoops.Tests
         
         public void Cancel_Loop_That_Is_Executing_An_Action()
         {
-            RxLoopConfiguration.Trace = Console.WriteLine;
             "Given a loop that executes a long running action every 1 tick"
                 ._(() =>
                 {

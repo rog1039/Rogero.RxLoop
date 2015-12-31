@@ -27,12 +27,14 @@ namespace Rogero.RxLoops
 
         public void StartLoop(CancellationToken token)
         {
+            RxLoopConfiguration.Trace($"[{LoopGuid}] Starting loop.");
             var loopState = new LoopState(token);
             ScheduleNextRunImmediately(loopState);
         }
 
         private void ScheduleNextRunImmediately(LoopState loopState)
         {
+            RxLoopConfiguration.Trace($"[{LoopGuid}] Scheduling immediate next run.");
             _schedulerProvider.ThreadPool.Schedule(
                 loopState,
                 TimeSpan.Zero,
@@ -46,8 +48,12 @@ namespace Rogero.RxLoops
 
         private void DoLoop(LoopState loopState)
         {
+            RxLoopConfiguration.Trace($"[{LoopGuid}] DoLoop called");
             if (loopState.CancellationToken.IsCancellationRequested)
+            {
+                RxLoopConfiguration.Trace($"[{LoopGuid}] Loop cancelled via CancellationToken.");
                 return;
+            }
 
             RunActionInternal(loopState.CancellationToken);
             ScheduleNextRun(loopState);
@@ -55,13 +61,13 @@ namespace Rogero.RxLoops
 
         private void RunActionInternal(CancellationToken token)
         {
-            RxLoopConfiguration.Trace?.Invoke(DebugOutput());
+            RxLoopConfiguration.Trace(DebugOutput());
             _action(token);
         }
 
         private string DebugOutput()
         {
-            return string.Format("Running at time {0:yyyy.MM.dd | hh:mm:ss.ffff | zzz} | Ticks {2,3} | [{1}] [{3}] ",
+            return string.Format("[{3}] Running at time {0:yyyy.MM.dd | hh:mm:ss.ffff | zzz} | Ticks {2,3} | [{1}]",
                                  _schedulerProvider.ThreadPool.Now,
                                  Description,
                                  _schedulerProvider.ThreadPool.Now.Ticks,
@@ -70,6 +76,7 @@ namespace Rogero.RxLoops
 
         private void ScheduleNextRun(LoopState loopState)
         {
+            RxLoopConfiguration.Trace($"[{LoopGuid}] Scheduling next run.");
             _schedulerProvider.ThreadPool.Schedule(
                 loopState,
                 DelayBetweenRuns,
