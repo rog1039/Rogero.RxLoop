@@ -61,8 +61,16 @@ namespace Rogero.RxLoops
 
         private void RunActionInternal(CancellationToken token)
         {
-            RxLoopConfiguration.Trace(DebugOutput());
-            _action(token);
+            try
+            {
+                RxLoopConfiguration.Trace(DebugOutput());
+                _action(token);
+            }
+            catch (Exception e)
+            {
+                RxLoopConfiguration.Trace($"[{LoopGuid}] Error running action");
+                RxLoopConfiguration.ExceptionHandler?.HandleException(e);
+            }
         }
 
         private string DebugOutput()
