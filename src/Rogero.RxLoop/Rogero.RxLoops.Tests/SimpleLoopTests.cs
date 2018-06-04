@@ -2,6 +2,7 @@
 using System.Data.Common;
 using System.Threading;
 using FluentAssertions;
+using FluentAssertions.Extensions;
 using Xunit;
 using Timer = System.Timers.Timer;
 
