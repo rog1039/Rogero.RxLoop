@@ -3,7 +3,6 @@
     <PropertyGroup>
         <TargetFramework>netcoreapp2.2</TargetFramework>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageVersion>2.0.0</PackageVersion>
         <Authors>Paul Rogero</Authors>
         <Title>Rogero.Rx.Loops</Title>
         <Description>Looping constructs built on top of Rx</Description>
