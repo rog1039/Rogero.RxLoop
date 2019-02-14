@@ -1,8 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>netcoreapp2.2</TargetFramework>
-        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <TargetFramework>netstandard2.0</TargetFramework>
         <Authors>Paul Rogero</Authors>
         <Title>Rogero.Rx.Schedulers</Title>
         <Description>A simple library that makes it easy to pass around a group of IScheduler's from Rx.</Description>
