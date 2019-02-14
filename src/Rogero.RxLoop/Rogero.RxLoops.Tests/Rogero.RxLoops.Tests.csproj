@@ -66,17 +66,17 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Rogero.RxLoop\Rogero.RxLoops.csproj">
-      <Project>{BCD31F99-E9BE-45FD-AA2E-07238B2BBF9A}</Project>
-      <Name>Rogero.RxLoops</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\xunit.analyzers.0.10.0\analyzers\dotnet\cs\xunit.analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Rogero.RxLoop.Old\Rogero.RxLoops.Old.csproj">
+      <Project>{bcd31f99-e9be-45fd-aa2e-07238b2bbf9a}</Project>
+      <Name>Rogero.RxLoops.Old</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

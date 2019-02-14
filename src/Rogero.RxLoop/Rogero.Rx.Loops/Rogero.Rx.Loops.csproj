@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp2.2</TargetFramework>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageVersion>2.0.0</PackageVersion>
+        <Title>Rogero.Rx.Loops</Title>
+        <Authors>Paul Rogero</Authors>
+        <Description>Looping constructs built on top of Rx</Description>
+        <PackageProjectUrl>https://github.com/rog1039/Rogero.RxLoop</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/rog1039/Rogero.RxLoop</RepositoryUrl>
+        <PackageTags>Rx</PackageTags>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Rogero.Rx.Schedulers\Rogero.Rx.Schedulers.csproj" />
+    </ItemGroup>
+
+</Project>
