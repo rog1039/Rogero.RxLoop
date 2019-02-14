@@ -4,8 +4,8 @@
         <TargetFramework>netcoreapp2.2</TargetFramework>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageVersion>2.0.0</PackageVersion>
-        <Title>Rogero.Rx.Loops</Title>
         <Authors>Paul Rogero</Authors>
+        <Title>Rogero.Rx.Loops</Title>
         <Description>Looping constructs built on top of Rx</Description>
         <PackageProjectUrl>https://github.com/rog1039/Rogero.RxLoop</PackageProjectUrl>
         <RepositoryUrl>https://github.com/rog1039/Rogero.RxLoop</RepositoryUrl>

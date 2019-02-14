@@ -2,12 +2,13 @@
 
     <PropertyGroup>
         <TargetFramework>netcoreapp2.2</TargetFramework>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Version>2.0.0</Version>
         <Authors>Paul Rogero</Authors>
+        <Title>Rogero.Rx.Schedulers</Title>
+        <Description>A simple library that makes it easy to pass around a group of IScheduler's from Rx.</Description>
         <PackageProjectUrl>https://github.com/rog1039/Rogero.RxLoop</PackageProjectUrl>
         <RepositoryUrl>https://github.com/rog1039/Rogero.RxLoop</RepositoryUrl>
-        <Description>A simple library that makes it easy to pass around a group of IScheduler's from Rx.</Description>
-        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageTags>rx</PackageTags>
     </PropertyGroup>
 
