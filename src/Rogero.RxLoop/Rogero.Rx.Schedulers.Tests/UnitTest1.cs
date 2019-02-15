@@ -123,6 +123,44 @@ namespace Rogero.Rx.Schedulers.Tests
             }
         }
 
+        [Fact()]
+        [Trait("Category", "Instant")]
+        public void SimpleDelayTest()
+        {
+            var virtualDelay = new VirtualDelay();
+
+            try
+            {
+                var hasCompleted = false;
+                Task.Run(async () =>
+                {
+                    await virtualDelay.Delay(TimeSpan.FromSeconds(7));
+                    hasCompleted = true;
+                });
+
+                Thread.Sleep(10);
+                hasCompleted.ShouldBeFalse();
+
+                virtualDelay.AdvanceTimeBy(TimeSpan.FromSeconds(5));
+                Thread.Sleep(10);
+                hasCompleted.ShouldBeFalse();
+
+                virtualDelay.AdvanceTimeBy(TimeSpan.FromSeconds(7));
+                Thread.Sleep(10);
+                hasCompleted.ShouldBeTrue();
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+            finally
+            {
+                Console.WriteLine(virtualDelay._stringBuilder.ToString());
+            }
+        }
+
         public UnitTest1(ITestOutputHelper outputHelperHelper) : base(outputHelperHelper)
         {
         }
