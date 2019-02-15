@@ -43,7 +43,7 @@ namespace Rogero.Rx.Schedulers.Tests
 
             Task.Run(() =>
             {
-                testScheduler.Sleep(TimeSpan.FromHours(1));
+                testScheduler.ThreadSleep(TimeSpan.FromHours(1));
                 hasCompleted = true;
             });
 
@@ -100,7 +100,7 @@ namespace Rogero.Rx.Schedulers.Tests
 
             Task.Run(() =>
             {
-                scheduler.Sleep(TimeSpan.FromSeconds(2));
+                scheduler.ThreadSleep(TimeSpan.FromSeconds(2));
                 hasCompleted = true;
             });
 

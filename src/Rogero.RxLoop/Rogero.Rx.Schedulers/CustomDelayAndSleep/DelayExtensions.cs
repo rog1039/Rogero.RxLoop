@@ -65,7 +65,7 @@ namespace Rogero.Rx.Schedulers
             lock (_blockingRecordsSorted)
             {
                 _blockingRecordsSorted.Add(blockingRecord.TimeActionIsDue, blockingRecord);
-                WriteLogMessage("Sleep", $"New entry with sleeptime of {sleepTime}. Current time of {_currentTime}");
+                WriteLogMessage("ThreadSleep", $"New entry with sleeptime of {sleepTime}. Current time of {_currentTime}");
             }
 
             lock (blockingRecord)

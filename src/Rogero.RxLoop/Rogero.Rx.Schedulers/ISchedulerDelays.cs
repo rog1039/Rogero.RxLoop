@@ -11,7 +11,7 @@ namespace Rogero.Rx.Schedulers
 {
     public static class ISchedulerDelayExtensions
     {
-        public static void Sleep(this IScheduler scheduler, TimeSpan sleepTime)
+        public static void ThreadSleep(this IScheduler scheduler, TimeSpan sleepTime)
         {
             var lockObject = new object();
             var continueBlocking = true;
