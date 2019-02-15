@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rogero.Rx.Schedulers", "Rog
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rogero.Rx.Loops", "Rogero.Rx.Loops\Rogero.Rx.Loops.csproj", "{53B5F1DD-400B-4209-941D-D1454A68E0A4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rogero.Rx.Schedulers.Tests", "Rogero.Rx.Schedulers.Tests\Rogero.Rx.Schedulers.Tests.csproj", "{F4F96C54-B888-4A00-A87D-A3F299C76049}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{53B5F1DD-400B-4209-941D-D1454A68E0A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{53B5F1DD-400B-4209-941D-D1454A68E0A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{53B5F1DD-400B-4209-941D-D1454A68E0A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4F96C54-B888-4A00-A87D-A3F299C76049}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4F96C54-B888-4A00-A87D-A3F299C76049}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4F96C54-B888-4A00-A87D-A3F299C76049}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4F96C54-B888-4A00-A87D-A3F299C76049}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
