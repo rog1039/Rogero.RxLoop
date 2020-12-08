@@ -36,6 +36,34 @@ namespace Rogero.Rx.Schedulers.Tests
 
         [Fact()]
         [Trait("Category", "Instant")]
+        public void SimpleDelayLoopTest()
+        {
+            var counter = 0;
+            var scheduler = new TestScheduler();
+
+            Task.Run(async () =>
+            {
+                while (true)
+                {
+                    await scheduler.Delay(TimeSpan.FromSeconds(2));
+                    counter++;
+                }
+            });
+
+            Thread.Sleep(100);
+            scheduler.AdvanceBy(TimeSpan.FromSeconds(2.5));
+            Thread.Sleep(100);
+            scheduler.AdvanceBy(TimeSpan.FromSeconds(.1));
+            Thread.Sleep(100);
+            counter.ShouldBe(1);
+
+            scheduler.AdvanceBy(TimeSpan.FromSeconds(2));
+            Thread.Sleep(100);
+            counter.ShouldBe(2);
+        }
+
+        [Fact()]
+        [Trait("Category", "Instant")]
         public void SimpleSleepTest()
         {
             var testScheduler = new TestScheduler();
@@ -67,6 +95,7 @@ namespace Rogero.Rx.Schedulers.Tests
         {
             SimpleDelayTest(CurrentThreadScheduler.Instance);
             SimpleSleepTest(CurrentThreadScheduler.Instance);
+            SimpleDelayLoopTest(CurrentThreadScheduler.Instance);
         }
 
         [Fact()]
@@ -75,6 +104,7 @@ namespace Rogero.Rx.Schedulers.Tests
         {
             SimpleDelayTest(ThreadPoolScheduler.Instance);
             SimpleSleepTest(ThreadPoolScheduler.Instance);
+            SimpleDelayLoopTest(ThreadPoolScheduler.Instance);
         }
 
         public void SimpleDelayTest(IScheduler scheduler)
@@ -94,6 +124,26 @@ namespace Rogero.Rx.Schedulers.Tests
             hasCompleted.ShouldBeTrue();
         }
 
+
+        public void SimpleDelayLoopTest(IScheduler scheduler)
+        {
+            var counter = 0;
+
+            Task.Run(async () =>
+            {
+                while (true)
+                {
+                    await scheduler.Delay(TimeSpan.FromSeconds(2));
+                    counter++;
+                }
+            });
+
+            Thread.Sleep(2000);
+            counter.ShouldBe(1);
+
+            Thread.Sleep(2000);
+            counter.ShouldBe(2);
+        }
         public void SimpleSleepTest(IScheduler scheduler)
         {
             var hasCompleted = false;
